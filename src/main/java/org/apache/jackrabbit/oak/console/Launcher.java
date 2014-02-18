@@ -17,54 +17,14 @@
 
 package org.apache.jackrabbit.oak.console;
 
-import javax.annotation.Nullable;
+import org.apache.jackrabbit.oak.console.impl.Console;
 
 public class Launcher {
-   private static enum Persistence {
-      TAR("tar"),H2("h2");
-
-      private final String type;
-      private Persistence(String type){
-         this.type = type;
-      }
-
-      public static boolean contains(String type){
-         return (fromString(type)!=null);
-      }
-
-      public static @Nullable Persistence fromString(String type){
-         for(Persistence p : Persistence.values()){
-            if(p.type.equalsIgnoreCase(type)){
-               return p;
-            }
-         }
-         return null;
-      }
-   };
-
-
-   private static @Nullable Console consoleFactory(Persistence type, String repoPath){
-      Console c = null;
-      switch(type){
-      case TAR: 
-         c = new TarConsole(repoPath);
-         break;
-      case H2:
-         c = new H2Console(repoPath);
-         break;
-      default:
-         break;
-      }
-      return c;
-   }
-
    public static void main( String[] args ) {
 
-      if(args.length >= 2 && Persistence.contains(args[0])){
-         Console c = consoleFactory(Persistence.fromString(args[0]),args[1]);
+      if(args.length >= 2 && Console.Persistence.contains(args[0])){
+         Console c = Console.getConsole(Console.Persistence.fromString(args[0]),args[1]);
 
-         //          Console c = new H2Console(args[0]);
-         //          
          if(args.length > 2){
             //we are asking a specific path
             c.list(args[2]);
@@ -79,6 +39,4 @@ public class Launcher {
          System.out.println("Peristence types: h2, tar");
       }
    }
-
-
 }

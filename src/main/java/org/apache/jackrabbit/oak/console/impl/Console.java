@@ -15,10 +15,12 @@
  * limitations under the License.
  */
 
-package org.apache.jackrabbit.oak.console;
+package org.apache.jackrabbit.oak.console.impl;
 
 import java.util.Collections;
 import java.util.LinkedList;
+
+import javax.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jackrabbit.oak.api.PropertyState;
@@ -29,6 +31,43 @@ public abstract class Console {
    NodeStore store;
    NodeState root;
    
+   public static enum Persistence {
+      TAR("tar"),H2("h2");
+
+      private final String type;
+      private Persistence(String type){
+         this.type = type;
+      }
+
+      public static boolean contains(String type){
+         return (fromString(type)!=null);
+      }
+
+      public static @Nullable Persistence fromString(String type){
+         for(Persistence p : Persistence.values()){
+            if(p.type.equalsIgnoreCase(type)){
+               return p;
+            }
+         }
+         return null;
+      }
+   };
+
+   
+   public static Console getConsole(Persistence type, String repoPath){
+      Console c = null;
+      switch(type){
+      case TAR: 
+         c = new TarConsole(repoPath);
+         break;
+      case H2:
+         c = new H2Console(repoPath);
+         break;
+      default:
+         break;
+      }
+      return c;
+   }
    
    /**
     * lists the children of the root
