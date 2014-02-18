@@ -36,7 +36,11 @@ public class Launcher {
          c.close();
       } else {
          System.out.println("java -jar oak-console*.jar <persistence-type> <path-to-repo> [node to list]");
-         System.out.println("Peristence types: h2, tar");
+         System.out.print("Peristence types: ");
+         for(Console.Persistence p : Console.Persistence.values()){
+            System.out.print(String.format("%s, ", p.getType()));
+         }
+         System.out.println();
       }
    }
 }

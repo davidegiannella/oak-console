@@ -51,6 +51,10 @@ public abstract class Console {
          }
          return null;
       }
+      
+      public String getType(){
+         return type;
+      }
    };
 
    
