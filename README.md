@@ -10,6 +10,9 @@ h2, Tar
 
 How to use it
 -------------
+the generic command line is like
+
+    $ java -jar oak-console*.jar <persistence-type> <path-to-repo> [node to list]
 
 1. Initiate a local oak repo (if not there)
 
