@@ -32,7 +32,7 @@ public class TarConsole extends Console {
    public TarConsole(String repoPath){
       super();
       try {
-         fileStore = new FileStore(new File(repoPath), 256, true);
+         fileStore = new FileStore(new File(repoPath), 256, false);
          store = new SegmentNodeStore(fileStore); 
          root = store.getRoot();
       } catch (IOException e) {

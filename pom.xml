@@ -12,7 +12,7 @@
 
    <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <oak.version>0.20-SNAPSHOT</oak.version>
+      <oak.version>0.21.0-SNAPSHOT</oak.version>
    </properties>
 
    <build>
