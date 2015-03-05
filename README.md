@@ -1,3 +1,16 @@
+----------------------------------------------------------------------
+
+**DEPRECATED**
+
+As of [r1596557](http://svn.apache.org/r1596557), oak provides its
+own console and this project is no longer maintained.
+
+See [oak-run
+docs](https://github.com/apache/jackrabbit-oak/blob/trunk/oak-run/README.md)
+for more details
+
+----------------------------------------------------------------------
+
 oak-console
 ===========
 
